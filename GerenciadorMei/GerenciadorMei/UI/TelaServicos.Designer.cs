@@ -49,7 +49,6 @@
             this.label1.Size = new System.Drawing.Size(187, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "LISTA DE SERVIÇOS";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // BUSCA
             // 

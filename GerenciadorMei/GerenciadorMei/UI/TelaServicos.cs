@@ -22,11 +22,6 @@ namespace GerenciadorMei.UI
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             btn_buscar.BackColor = Color.FromArgb(200, 200, 200);

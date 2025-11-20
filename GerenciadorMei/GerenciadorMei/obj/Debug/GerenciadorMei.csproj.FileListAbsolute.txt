@@ -31,3 +31,5 @@ C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\Geren
 C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\GerenciadorMei\GerenciadorMei\obj\Debug\GerenciadorMei.UI.MainForm.resources
 C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\GerenciadorMei\GerenciadorMei\obj\Debug\GerenciadorMei.csproj.GenerateResource.Cache
 C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\GerenciadorMei\GerenciadorMei\obj\Debug\GerenciadorMei.UI.TelaServicos.resources
+C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\GerenciadorMei\GerenciadorMei\obj\Debug\GerenciadorMei.UI.NovoServico.resources
+C:\Users\Usuario\Desktop\Faculdade\4 Semestre\Zé\PROJETO FINAL\Projeto-C-\GerenciadorMei\GerenciadorMei\obj\Debug\GerenciadorMei.UI.LoginForm.resources
