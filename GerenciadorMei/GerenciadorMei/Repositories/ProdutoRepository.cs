@@ -1,47 +1,87 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using System.Data.SQLite; 
+using GerenciadorMei.Database;
 using GerenciadorMei.Models;
-using GerenciadorMei.Database; // Importante para achar a classe Db
 
 namespace GerenciadorMei.Repositories
 {
     public class ProdutoRepository
     {
-        // Não precisa mais da string connectionString aqui!
+       
+        public void Inserir(Produto p)
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+                string sql = "INSERT INTO produtos (nome, preco) VALUES (@Nome, @Preco)";
 
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nome", p.Nome);
+                    cmd.Parameters.AddWithValue("@Preco", p.Preco);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
+        public void Atualizar(Produto p)
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+                string sql = "UPDATE produtos SET nome = @Nome, preco = @Preco WHERE id = @Id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Nome", p.Nome);
+                    cmd.Parameters.AddWithValue("@Preco", p.Preco);
+                    cmd.Parameters.AddWithValue("@Id", p.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
+        public void Excluir(int id)
+        {
+            using (var conn = Db.GetConnection())
+            {
+                conn.Open();
+                string sql = "DELETE FROM produtos WHERE id = @Id";
+
+                using (var cmd = new SQLiteCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        
         public List<Produto> GetAll()
         {
             var lista = new List<Produto>();
 
-            // USA A CONEXÃO CENTRALIZADA DA SUA CLASSE DB
             using (var conn = Db.GetConnection())
             {
-                try
-                {
-                    conn.Open();
-                    string sql = "SELECT Id, Nome, Preco FROM produtos"; // minúsculo igual no create table
+                conn.Open();
+                string sql = "SELECT id, nome, preco FROM produtos ORDER BY nome";
 
-                    using (var cmd = new SQLiteCommand(sql, conn))
-                    {
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                var produto = new Produto
-                                {
-                                    Id = Convert.ToInt32(reader["id"]),
-                                    Nome = reader["nome"].ToString(),
-                                    Preco = Convert.ToDecimal(reader["preco"])
-                                };
-                                lista.Add(produto);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
+                using (var cmd = new SQLiteCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
                 {
-                    throw new Exception("Erro no SQLite: " + ex.Message);
+                    while (reader.Read())
+                    {
+                        lista.Add(new Produto
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Nome = reader["nome"].ToString(),
+                            
+                            Preco = Convert.ToDecimal(reader["preco"])
+                        });
+                    }
                 }
             }
             return lista;

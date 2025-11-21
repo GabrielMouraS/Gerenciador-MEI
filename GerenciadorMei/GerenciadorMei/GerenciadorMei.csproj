@@ -78,6 +78,30 @@
     <Compile Include="UI\BuscarProdutos.Designer.cs">
       <DependentUpon>BuscarProdutos.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CadastroCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CadastroCliente.Designer.cs">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CadastroProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CadastroProduto.Designer.cs">
+      <DependentUpon>CadastroProduto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListarClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ListarClientes.Designer.cs">
+      <DependentUpon>ListarClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ListarProdutos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ListarProdutos.Designer.cs">
+      <DependentUpon>ListarProdutos.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BuscarProdutos.resx">
       <DependentUpon>BuscarProdutos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CadastroCliente.resx">
+      <DependentUpon>CadastroCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ListarClientes.resx">
+      <DependentUpon>ListarClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

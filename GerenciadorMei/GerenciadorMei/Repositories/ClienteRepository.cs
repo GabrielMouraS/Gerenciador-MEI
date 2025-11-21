@@ -8,7 +8,8 @@ namespace GerenciadorMei.Repositories
 {
     public class ClienteRepository
     {
-        public void Add(Cliente c)
+        
+        public void Inserir(Cliente c)
         {
             using (var conn = Db.GetConnection())
             {
@@ -24,13 +25,16 @@ namespace GerenciadorMei.Repositories
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Nome", c.Nome);
-                    cmd.Parameters.AddWithValue("@Telefone", c.Telefone);
-                    cmd.Parameters.AddWithValue("@Email", c.Email);
+                    cmd.Parameters.AddWithValue("@Telefone", c.Telefone ?? ""); 
+                    cmd.Parameters.AddWithValue("@Email", c.Email ?? "");
+
+                    
                     cmd.Parameters.AddWithValue("@DataNascimento",
                         c.DataNascimento.HasValue ? c.DataNascimento.Value.ToString("yyyy-MM-dd") : null);
-                    cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
-                    cmd.Parameters.AddWithValue("@Cnpj", c.Cnpj);
-                    cmd.Parameters.AddWithValue("@Endereco", c.Endereco);
+
+                    cmd.Parameters.AddWithValue("@Cpf", c.Cpf ?? "");
+                    cmd.Parameters.AddWithValue("@Cnpj", c.Cnpj ?? "");
+                    cmd.Parameters.AddWithValue("@Endereco", c.Endereco ?? "");
 
                     cmd.ExecuteNonQuery();
                 }
@@ -44,7 +48,6 @@ namespace GerenciadorMei.Repositories
             using (var conn = Db.GetConnection())
             {
                 conn.Open();
-
                 string sql = "SELECT * FROM Clientes ORDER BY Nome ASC;";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -54,16 +57,17 @@ namespace GerenciadorMei.Repositories
                     {
                         var cliente = new Cliente
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Nome = reader["Nome"].ToString(),
-                            Telefone = reader["Telefone"].ToString(),
-                            Email = reader["Email"].ToString(),
-                            Endereco = reader["Endereco"].ToString(),
-                            Cpf = reader["Cpf"].ToString(),
-                            Cnpj = reader["Cnpj"].ToString()
+                           
+                            Id = reader.GetInt32(reader.GetOrdinal("id")),
+                            Nome = reader["nome"].ToString(),
+                            Telefone = reader["telefone"].ToString(),
+                            Email = reader["email"].ToString(),
+                            Endereco = reader["endereco"].ToString(),
+                            Cpf = reader["cpf"].ToString(),
+                            Cnpj = reader["cnpj"].ToString()
                         };
 
-                        string data = reader["DataNascimento"]?.ToString();
+                        string data = reader["data_nascimento"]?.ToString();
                         if (!string.IsNullOrEmpty(data))
                             cliente.DataNascimento = DateTime.Parse(data);
 
@@ -71,7 +75,6 @@ namespace GerenciadorMei.Repositories
                     }
                 }
             }
-
             return lista;
         }
 
@@ -80,7 +83,6 @@ namespace GerenciadorMei.Repositories
             using (var conn = Db.GetConnection())
             {
                 conn.Open();
-
                 string sql = "SELECT * FROM Clientes WHERE Id = @Id;";
 
                 using (var cmd = new SQLiteCommand(sql, conn))
@@ -93,16 +95,16 @@ namespace GerenciadorMei.Repositories
                         {
                             var cliente = new Cliente
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                Nome = reader["Nome"].ToString(),
-                                Telefone = reader["Telefone"].ToString(),
-                                Email = reader["Email"].ToString(),
-                                Endereco = reader["Endereco"].ToString(),
-                                Cpf = reader["Cpf"].ToString(),
-                                Cnpj = reader["Cnpj"].ToString()
+                                Id = reader.GetInt32(reader.GetOrdinal("id")),
+                                Nome = reader["nome"].ToString(),
+                                Telefone = reader["telefone"].ToString(),
+                                Email = reader["email"].ToString(),
+                                Endereco = reader["endereco"].ToString(),
+                                Cpf = reader["cpf"].ToString(),
+                                Cnpj = reader["cnpj"].ToString()
                             };
 
-                            string data = reader["DataNascimento"]?.ToString();
+                            string data = reader["data_nascimento"]?.ToString();
                             if (!string.IsNullOrEmpty(data))
                                 cliente.DataNascimento = DateTime.Parse(data);
 
@@ -111,11 +113,11 @@ namespace GerenciadorMei.Repositories
                     }
                 }
             }
-
             return null;
         }
 
-        public void Update(Cliente c)
+       
+        public void Atualizar(Cliente c)
         {
             using (var conn = Db.GetConnection())
             {
@@ -136,13 +138,15 @@ namespace GerenciadorMei.Repositories
                 using (var cmd = new SQLiteCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@Nome", c.Nome);
-                    cmd.Parameters.AddWithValue("@Telefone", c.Telefone);
-                    cmd.Parameters.AddWithValue("@Email", c.Email);
+                    cmd.Parameters.AddWithValue("@Telefone", c.Telefone ?? "");
+                    cmd.Parameters.AddWithValue("@Email", c.Email ?? "");
+
                     cmd.Parameters.AddWithValue("@DataNascimento",
                         c.DataNascimento.HasValue ? c.DataNascimento.Value.ToString("yyyy-MM-dd") : null);
-                    cmd.Parameters.AddWithValue("@Cpf", c.Cpf);
-                    cmd.Parameters.AddWithValue("@Cnpj", c.Cnpj);
-                    cmd.Parameters.AddWithValue("@Endereco", c.Endereco);
+
+                    cmd.Parameters.AddWithValue("@Cpf", c.Cpf ?? "");
+                    cmd.Parameters.AddWithValue("@Cnpj", c.Cnpj ?? "");
+                    cmd.Parameters.AddWithValue("@Endereco", c.Endereco ?? "");
                     cmd.Parameters.AddWithValue("@Id", c.Id);
 
                     cmd.ExecuteNonQuery();
@@ -150,12 +154,12 @@ namespace GerenciadorMei.Repositories
             }
         }
 
-        public void Delete(int id)
+        
+        public void Excluir(int id)
         {
             using (var conn = Db.GetConnection())
             {
                 conn.Open();
-
                 string sql = "DELETE FROM Clientes WHERE Id=@Id;";
 
                 using (var cmd = new SQLiteCommand(sql, conn))

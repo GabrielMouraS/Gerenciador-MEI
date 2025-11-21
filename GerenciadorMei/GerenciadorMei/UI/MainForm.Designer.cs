@@ -120,12 +120,14 @@
             this.cadastrarClienteToolStripMenuItem.Name = "cadastrarClienteToolStripMenuItem";
             this.cadastrarClienteToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.cadastrarClienteToolStripMenuItem.Text = "Cadastrar Cliente";
+            this.cadastrarClienteToolStripMenuItem.Click += new System.EventHandler(this.cadastroToolStripMenuItem_Click);
             // 
             // listarClientesToolStripMenuItem
             // 
             this.listarClientesToolStripMenuItem.Name = "listarClientesToolStripMenuItem";
             this.listarClientesToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.listarClientesToolStripMenuItem.Text = "Listar Clientes";
+            this.listarClientesToolStripMenuItem.Click += new System.EventHandler(this.listarClientesToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem
             // 
