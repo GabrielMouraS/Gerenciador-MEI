@@ -1,2 +1,4 @@
-# Projeto-C-
-Projeto C# seu zé
+# GERENCIADOR MEI
+
+
+Permite gerenciar serviços de clientes e venda de produtos.
