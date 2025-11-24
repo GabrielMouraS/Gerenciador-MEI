@@ -38,7 +38,7 @@ Aqui estão algumas telas do sistema em funcionamento:
 
 * **Linguagem:** C#
 * **Framework:** .NET (Windows Forms)
-* **IDE:** Visual Studio
+* **IDE:** Visual Studio 2015
 * **Banco de Dados:** SQLite
 
 ## 🚀 Como executar o projeto
